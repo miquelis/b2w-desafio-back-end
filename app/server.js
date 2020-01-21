@@ -10,8 +10,7 @@ class App {
   }
   middlewares() {
     this.express.use(bodyParser.json());
-    this.express.use(bodyParser.urlencoded({ extended: false }));
-    this.express.use(require("./middlewares/auth"));
+    this.express.use(bodyParser.urlencoded({ extended: false }));    
   }
   routes() {
     this.express.use(require("./routes"));
