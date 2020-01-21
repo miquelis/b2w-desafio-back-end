@@ -1,5 +1,9 @@
+"use strict";
+
 const express = require("express");
 const bodyParser = require("body-parser");
+
+require("dotenv").config();
 
 class App {
   constructor() {
@@ -10,7 +14,7 @@ class App {
   }
   middlewares() {
     this.express.use(bodyParser.json());
-    this.express.use(bodyParser.urlencoded({ extended: false }));    
+    this.express.use(bodyParser.urlencoded({ extended: false }));
   }
   routes() {
     this.express.use(require("./routes"));

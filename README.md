@@ -26,7 +26,9 @@ Funcionalidades desejadas:
 
 - Buscar por ID
 
-- Remover planetaLinguagens que usamos: Java, Go, Clojure, Node, Python
+- Remover planeta
+
+Linguagens que usamos: Java, Go, Clojure, Node, Python
 
 Bancos que usamos: MongoDB, Cassandra, DynamoDB, Datomic
 

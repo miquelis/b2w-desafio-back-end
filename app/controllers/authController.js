@@ -1,4 +1,5 @@
-//const express = require("express");
+"use strict";
+
 const User = require("../models/users");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
@@ -69,7 +70,7 @@ exports.forgotPassword = async function(req, res) {
     mailer.sendMail(
       {
         to: email,
-        from: "raphaelmiquelis@gmail.com",
+        from: process.env.MAIL_FROM,
         template: "auth/forgot_password",
         context: { token }
       },
@@ -79,11 +80,10 @@ exports.forgotPassword = async function(req, res) {
             .status(400)
             .send({ error: "Cannot send forgot password email" });
 
-        return res.send({ sucesso: "Email enviado!" });
+        return res.send({ success: "Email sent!" });
       }
     );
   } catch (error) {
-    console.log(error);
     return res
       .status(400)
       .send({ error: "Error on forgot password, try again" });
@@ -114,7 +114,7 @@ exports.resetPassword = async function(req, res) {
 
     await user.save();
 
-    return res.send({ sucesso: "Senha alterada!" });
+    return res.send({ success: "Password changed!" });
   } catch (error) {
     return res.status(400).send({ error: "Cannot send forgot password email" });
   }

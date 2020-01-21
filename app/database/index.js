@@ -1,15 +1,14 @@
+"use strict";
+
 const mongoose = require("mongoose");
 
 try {
-  mongoose.connect(
-    "mongodb+srv://miquelis:miquelis123@cluster0-nnhbt.mongodb.net/test?retryWrites=true&w=majority",
-    {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useFindAndModify: false
-    }
-  );
+  mongoose.connect(process.env.MONGO_URL, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  });
 } catch (error) {
   console.error(error);
 }
