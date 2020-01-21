@@ -1,0 +1,22 @@
+{
+  "name": "b2w-desafio-back-end",
+  "version": "1.0.0",
+  "description": "API REST para o desafio técnico",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miquelis/b2w-desafio-back-end.git"
+  },
+  "author": "Raphael Miquelis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miquelis/b2w-desafio-back-end/issues"
+  },
+  "homepage": "https://github.com/miquelis/b2w-desafio-back-end#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
