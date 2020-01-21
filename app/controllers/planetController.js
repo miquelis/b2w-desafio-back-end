@@ -4,18 +4,24 @@ const Planet = require("../models/planet");
 const fetch = require("node-fetch");
 
 async function searchPlanets(planets, res) {
-  fetch(process.env.SWAPI + planets.name)
+  const { name, climate, terrain } = planets;
+
+  fetch(process.env.SWAPI + name)
     .then(res => res.json())
     .then(data => {
       const results = data.results;
       results.map(data => {
-        const { name, climate, terrain } = planets;
         const { films } = data;
         return res.send({ name, climate, terrain, films });
       });
     })
     .catch(error => {
-      return res.status(400).send({ error: "Error loading planets" });
+      return res.send({
+        name,
+        climate,
+        terrain,
+        films: "SWAPI did not return the data"
+      });
     });
 }
 
