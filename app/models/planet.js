@@ -1,6 +1,6 @@
 "use strict";
 
-const mongoose = require("../database");
+const mongoose = require("../database/database");
 
 const Planetchema = new mongoose.Schema({
   name: {

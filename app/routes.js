@@ -9,9 +9,7 @@ router.get("/", (req, res) => {
 });
 
 router.use("/auth", require("./routes/auth"));
-
 router.use(authMiddleware);
-
-router.use("/planets", require("./routes/planet"));
+router.use("/planets", require("./routes/planets"));
 
 module.exports = router;

@@ -7,12 +7,19 @@ const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth");
 const mailer = require("../utils/mailer");
 
+/**
+ * Gerando o token JWT
+ */
 function generateToken(params = {}) {
   return jwt.sign(params, authConfig.secret, {
     expiresIn: 86400
   });
 }
 
+/**
+ * Registrando um usuário passando os parametros
+ * name, email, password
+ */
 exports.register = async function(req, res) {
   const { email } = req.body;
 
@@ -29,6 +36,11 @@ exports.register = async function(req, res) {
     return res.status(400).send({ error: "Registration falied" });
   }
 };
+
+/**
+ * Autenticando o usuário passando os parametros
+ * email, password
+ */
 
 exports.authenticate = async function(req, res) {
   const { email, password } = req.body;
@@ -48,6 +60,10 @@ exports.authenticate = async function(req, res) {
   });
 };
 
+/**
+ * Alterando a senha enviando o email no body o
+ * mesmo irá enviar o email para usuário.
+ */
 exports.forgotPassword = async function(req, res) {
   const { email } = req.body;
 
@@ -90,6 +106,9 @@ exports.forgotPassword = async function(req, res) {
   }
 };
 
+/**
+ * Alterando a senha passando o email, password e o token enviado por email
+ */
 exports.resetPassword = async function(req, res) {
   const { email, token, password } = req.body;
 

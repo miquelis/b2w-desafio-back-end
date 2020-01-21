@@ -3,6 +3,9 @@
 const Planet = require("../models/planet");
 const fetch = require("node-fetch");
 
+/**
+ * Retornar os dados da api SWAPI
+ */
 async function searchPlanets(planets, res) {
   const { name, climate, terrain } = planets;
 
@@ -25,6 +28,11 @@ async function searchPlanets(planets, res) {
     });
 }
 
+/**
+ * Retornar todos os planetas ou retornar um único planeta
+ * passando o parametro name="Nome do Planeta"
+ */
+
 exports.list = async function(req, res) {
   try {
     const name = req.query.name;
@@ -42,6 +50,10 @@ exports.list = async function(req, res) {
   }
 };
 
+/**
+ * Retornar  um único planeta passando o id
+ */
+
 exports.listId = async function(req, res) {
   try {
     const planets = await Planet.findById(req.params.id);
@@ -51,6 +63,9 @@ exports.listId = async function(req, res) {
   }
 };
 
+/**
+ * Criar um planeta passados os dados name, climate e terrain
+ */
 exports.create = async function(req, res) {
   try {
     const planet = await Planet.create({ ...req.body });
@@ -61,6 +76,9 @@ exports.create = async function(req, res) {
   }
 };
 
+/**
+ * Alterando os dados passando o id
+ */
 exports.update = async function(req, res) {
   try {
     const { name, climate, terrain } = req.body;
@@ -80,6 +98,9 @@ exports.update = async function(req, res) {
   }
 };
 
+/**
+ * Removendo os dados passando o id
+ */
 exports.delete = async function(req, res) {
   try {
     await Planet.findByIdAndRemove(req.params.id);
