@@ -1,0 +1,12 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 60 #adicionado o tempo em segundos#
+      arrivalRate: 1000 #quantidade de maquinas virtuais para o teste#
+  defaults:
+    headers:
+      x-access-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTc0OTU2ODc4LCJleHAiOjE1NzQ5NjA0Nzh9.OsI51H6FnMRPmWCw5OgsZjpWnh4prndsl5xYLqj90-0"
+scenarios:
+  - flow:
+      - get:
+          url: "/noticias"
