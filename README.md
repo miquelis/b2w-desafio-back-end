@@ -24,31 +24,45 @@ A API utiliza o **NodeJS v10** ou superior.
 Siga os passos abaixo para instalar e realizar o start da API:
 
 1. Acesse o diretório do projeto.
-2. `$ npm install`, para instalar todas as dependências.
-3. `$ npm start`, para executar o projeto.
-4. Será exibida a mensagem: **API rodando na porta 3000** no terminal.
+2. Altere o arquivo .env.example para .env e altere as configurações.
+3. `$ npm install`, para instalar todas as dependências.
+4. `$ npm start`, para executar o projeto.
+5. Será exibida a mensagem: **API rodando na porta 3000** no terminal.
 
 ### Rotas
 
 Seguem todas as rotas da API:
 
-| Rotas                                    | Método   | Descrição                                                                                                                                                                                                                            |
-| ---------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `http://localhots:3000/`                 | **GET**  | Rota incial de boas vindas.                                                                                                                                                                                                          |
-| `http://localhots:3000/api/login`        | **POST** | Rota para se autenticar na API e gerar o token. Para se autenticar será necessário enviar um json no body com {email: seuemail@provedor.com, password: password}. Exemplo: { email: joaosergio@outlook.com, password: bennuTv@2018 } |
-| `http://localhots:3000/api/logout`       | **GET**  | Rota para realizar o logout, é necessário o token.                                                                                                                                                                                   |
-| `http://localhots:3000/api/noticias`     | **GET**  | Rota para exibir todas as notícias, é necessário o token.                                                                                                                                                                            |
-| `http://localhots:3000/api/noticias/:id` | **GET**  | Rota para exibir a notícia com base no **id** passado, é necessário o token.                                                                                                                                                         |
+| Rotas                                           | Método     | Descrição                                                                                                                                                                                                                                                            |
+| ----------------------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `http://localhot:3000/`                         | **GET**    | Rota incial de boas vindas.                                                                                                                                                                                                                                          |
+| `http://localhot:3000/auth/register`            | **POST**   | Rota para se registrar na API e gerar o token. Para se registrar será necessário enviar um json no body com {name: seu nome, email: seuemail@provedor.com, password: password}. Exemplo: {name: João Sergio, email: joaosergio@outlook.com, password: b2w@2020 }     |
+| `http://localhot:3000/auth/authenticate`        | **POST**   | Rota para se autenticar na API e gerar o token. Para se autenticar será necessário enviar um json no body com {email: seuemail@provedor.com, password: password}. Exemplo: { email: joaosergio@outlook.com, password: b2w@2020 }                                     |
+| `http://localhot:3000/auth/forgot_password`     | **POST**   | Rota para recuperar a senha. Para recuperar será necessário enviar um json no body com {email: seuemail@provedor.com}, onde será enviado um email com o token para alteração. Exemplo: { email: joaosergio@outlook.com}                                              |
+| `http://localhot:3000/auth/reset_password`      | **POST**   | Rota para resetar a senha. Para resetar será necessário enviar um json no body com {email: seuemail@provedor.com, password: nova sennha, token: o token enviado no email}. Exemplo: { email: joaosergio@outlook.com, password: b2w@2019, token: token do email}      |
+| `http://localhot:3000/planets`                  | **GET**    | Rota para exibir todos os planetas, é necessário o token.                                                                                                                                                                                                            |
+| `http://localhot:3000/planets?name=PlanetsName` | **GET**    | Rota para exibir o planeta com base no **nome**, é necessário o token. Exemplo: http://localhot:3000/planets?name=Alderaan                                                                                                                                           |
+| `http://localhot:3000/planets/:id`              | **GET**    | Rota para exibir o planeta com base no **id** passado, é necessário o token.                                                                                                                                                                                         |
+| `http://localhot:3000/planets`                  | **POST**   | Rota para criar um planeta passado os seguintes dados como json no body {name: nome do planeta, climate: tipo de clima, terrain: tipo de terreno }, é necessário o token. Exemplo: {"name": "Dagobah", "climate": "murky", "terrain": "swamp, jungles" }             |
+| `http://localhot:3000/planets/:id`              | **PUT**    | Rota para editar um planeta passado o **id** e os seguintes dados como json no body {name: nome do planeta, climate: tipo de clima, terrain: tipo de terreno }, é necessário o token. Exemplo: {"name": "Dagobah", "climate": "murky", "terrain": "swamp, jungles" } |
+| `http://localhot:3000/planets/:id`              | **DELETE** | Rota para deletar um planeta passado o **id**, é necessário o token.                                                                                                                                                                                                 |
+
+OBS: O token expira em um dia!
 
 ### Dependências
 
 As dependência utilizadas na API são:
 
+- bcryptjs
+- dotenv-safe
 - body-parser
 - express
 - jsonwebtoken
-- lodash
-- underscore
+- mongoose
+- node-fetch
+- nodemailer
+- nodemailer-express-handlebars
+- path
 
 ### Teste
 

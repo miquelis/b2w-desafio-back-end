@@ -17,7 +17,7 @@ async function searchPlanets(arrayPlanets, res) {
     urls.map(url =>
       fetch(url)
         .then(res => res.json())
-        .catch(error => console.log("SWAPI did not return the data"))
+        .catch(error => console.error("SWAPI did not return the data"))
     )
   )
     .then(data => {
