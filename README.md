@@ -1,4 +1,4 @@
-# Desafio B2W de Backend
+# Desafio B2W de Backend Star Wars
 
 Para possibilitar a equipe de front criar essa aplicação, queremos desenvolver uma API que contenha os dados dos planetas.
 
