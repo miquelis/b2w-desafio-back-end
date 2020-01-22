@@ -24,7 +24,7 @@ A API utiliza o **NodeJS v10** ou superior.
 Siga os passos abaixo para instalar e realizar o start da API:
 
 1. Acesse o diretório do projeto.
-2. Altere o arquivo .env.example para .env e altere as configurações.
+2. Renomeie o arquivo .env.example para .env e altere as configurações.
 3. `$ npm install`, para instalar todas as dependências.
 4. `$ npm start`, para executar o projeto.
 5. Será exibida a mensagem: **API rodando na porta 3000** no terminal.
