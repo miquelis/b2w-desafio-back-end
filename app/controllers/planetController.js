@@ -6,25 +6,49 @@ const fetch = require("node-fetch");
 /**
  * Retornar os dados da api SWAPI
  */
-async function searchPlanets(planets, res) {
-  const { name, climate, terrain } = planets;
+async function searchPlanets(arrayPlanets, res) {
+  let urls = new Array();
 
-  fetch(process.env.SWAPI + name)
-    .then(res => res.json())
+  arrayPlanets.filter(planet => {
+    urls.push(process.env.SWAPI + planet.name);
+  });
+
+  Promise.all(
+    urls.map(url =>
+      fetch(url)
+        .then(res => res.json())
+        .catch(error => console.log("SWAPI did not return the data"))
+    )
+  )
     .then(data => {
-      const results = data.results;
-      results.map(data => {
-        const { films } = data;
-        return res.send({ name, climate, terrain, films });
+      let planets = new Array();
+      arrayPlanets.filter(planet => {
+        data.map(async data => {
+          if (data)
+            data.results.map(result => {
+              const { name, climate, terrain, films } = result;
+              if (
+                planet.name === name &&
+                planet.climate === climate &&
+                planet.terrain === terrain
+              )
+                planets.push({
+                  id: planet.id,
+                  name,
+                  climate,
+                  terrain,
+                  films
+                });
+            });
+        });
       });
+
+      if (planets.length == 0) planets = planet;
+
+      return res.send(planets);
     })
     .catch(error => {
-      return res.send({
-        name,
-        climate,
-        terrain,
-        films: "SWAPI did not return the data"
-      });
+      return res.status(400).send({ error: "Error loading planets" });
     });
 }
 
@@ -40,10 +64,10 @@ exports.list = async function(req, res) {
 
     if (name) {
       planets = await Planet.findOne({ name: name });
-      searchPlanets(planets, res);
+      searchPlanets(new Array(planets), res);
     } else {
       planets = await Planet.find();
-      return res.send({ planets });
+      searchPlanets(planets, res);
     }
   } catch (error) {
     return res.status(400).send({ error: "Error loading planets" });
@@ -57,7 +81,7 @@ exports.list = async function(req, res) {
 exports.listId = async function(req, res) {
   try {
     const planets = await Planet.findById(req.params.id);
-    searchPlanets(planets, res);
+    searchPlanets(new Array(planets), res);
   } catch (error) {
     return res.status(400).send({ error: "Error loading planet" });
   }
@@ -70,7 +94,7 @@ exports.create = async function(req, res) {
   try {
     const planet = await Planet.create({ ...req.body });
 
-    return res.send({ planet });
+    return res.send(planet);
   } catch (error) {
     return res.status(400).send({ error: "Error creating new planet" });
   }
@@ -92,7 +116,7 @@ exports.update = async function(req, res) {
       { new: true }
     );
 
-    return res.send({ planet });
+    return res.send(planet);
   } catch (error) {
     return res.status(400).send({ error: "Error creating new planet" });
   }
