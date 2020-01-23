@@ -6,6 +6,8 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth");
 const mailer = require("../utils/mailer");
+const config = require("config");
+const { from } = config.get("mail");
 
 /**
  * Gerando o token JWT
@@ -86,7 +88,7 @@ exports.forgotPassword = async function(req, res) {
     mailer.sendMail(
       {
         to: email,
-        from: process.env.MAIL_FROM,
+        from: from,
         template: "auth/forgot_password",
         context: { token }
       },

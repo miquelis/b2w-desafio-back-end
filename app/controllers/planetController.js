@@ -2,6 +2,7 @@
 
 const Planet = require("../models/planet");
 const fetch = require("node-fetch");
+const { SWAPI } = require("config");
 
 /**
  * Retornar os dados da api SWAPI
@@ -10,7 +11,7 @@ async function searchPlanets(arrayPlanets, res) {
   let urls = new Array();
 
   arrayPlanets.filter(planet => {
-    urls.push(process.env.SWAPI + planet.name);
+    urls.push(SWAPI + planet.name);
   });
 
   Promise.all(

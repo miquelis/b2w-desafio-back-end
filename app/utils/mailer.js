@@ -3,11 +3,13 @@
 const path = require("path");
 const nodemailer = require("nodemailer");
 const hbs = require("nodemailer-express-handlebars");
+const config = require("config");
+const { host, port, user, pass } = config.get("mail");
 
 const transport = nodemailer.createTransport({
-  host: process.env.MAIL_HOST,
-  port: process.env.MAIL_PORT,
-  auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASS }
+  host,
+  port,
+  auth: { user, pass }
 });
 
 transport.use(

@@ -2,7 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-require("dotenv-flow").config();
+// require("dotenv-flow").config();
 
 class App {
   constructor() {

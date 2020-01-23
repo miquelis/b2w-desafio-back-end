@@ -1,9 +1,11 @@
 "use strict";
 
 const mongoose = require("mongoose");
+const config = require("config");
+const { uri } = config.get("mongoDB");
 
 try {
-  mongoose.connect(process.env.MONGO_URL, {
+  mongoose.connect(uri, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
