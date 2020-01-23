@@ -1,8 +1,9 @@
 "use strict";
 
 const server = require("./server");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
+const host = process.env.HOST;
 
-server.listen(port, () => {
-  console.log(`API rodando na porta ${port}`);
+server.listen(port, host, () => {
+  console.log(`API rodando em http://${host}:${port}`);
 });

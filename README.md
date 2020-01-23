@@ -24,10 +24,12 @@ A API utiliza o **NodeJS v10** ou superior.
 Siga os passos abaixo para instalar e realizar o start da API:
 
 1. Acesse o diretório do projeto.
-2. Renomeie o arquivo .env.example para .env e altere as configurações.
+2. Renomeie o arquivo .env.example para .env e altere as configurações, caso deseja multiplos ambientes o projeto usa o
+   modulo [dotenv-flow](https://www.npmjs.com/package/dotenv-flow), que possibilida utilizar diversar configurações de ambiente.
 3. `$ npm install`, para instalar todas as dependências.
-4. `$ npm start`, para executar o projeto.
-5. Será exibida a mensagem: **API rodando na porta 3000** no terminal.
+4. Caso você deseja executar no modo desenvolvimento, recomendamos instalar o nodemon `$ npm install -g nodemon` e executar o
+   `$ npm run start-dev`, para executar o projeto ou se for no modo produção execute `$ npm run start-prod`.
+5. Será exibida a mensagem: **API rodando em http://127.0.0.1:3000** no terminal.
 
 ### Rotas
 
@@ -54,7 +56,7 @@ OBS: O token expira em um dia!
 As dependência utilizadas na API são:
 
 - bcryptjs
-- dotenv-safe
+- dotenv-flow
 - body-parser
 - express
 - jsonwebtoken

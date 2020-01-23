@@ -2,12 +2,11 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-require("dotenv-safe").config();
+require("dotenv-flow").config();
 
 class App {
   constructor() {
     this.express = express();
-    this.isDev = process.env.NODE_ENV !== "production";
     this.middlewares();
     this.routes();
   }
