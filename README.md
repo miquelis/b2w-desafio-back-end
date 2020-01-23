@@ -18,18 +18,26 @@ Para possibilitar a equipe de front criar essa aplicação, queremos desenvolver
 - Buscar por ID
 - Remover planeta
 
+### Instalação com Docker
+
+Para rodar o projeto é necessário ter o Docker instalado na sua máquina. Caso não tenha, acesse o site [Docker](https://www.docker.com/products/docker-desktop) e baixe a versão correspondente ao seu sistema.
+
+1. Acesse o diretório do projeto.
+2. Renomeie o arquivo default-sample.json para default.json que está localizado no diretório config/ e altere as variáveis de ambiente do projeto, caso deseja sobrescrever ou adicionar configurações, como por exemplo, com as variáveis de produção você pode criar o production.json.
+3. Ápos ter instalado o Docker acesse a pasta do projeto e digite: `$ docker-compose up`
+
+Será baixado o Docker, instalado o seu projeto e iniciado o serviço, mas caso o serviço não seja iniciado automaticamente é só digitar o comando acima novamente que irá iniciar.
+
 ### Instalação no terminal
 
 A API utiliza o **NodeJS v10** ou superior.
 Siga os passos abaixo para instalar e realizar o start da API:
 
 1. Acesse o diretório do projeto.
-2. Renomeie o arquivo .env.example para .env e altere as configurações, caso deseja multiplos ambientes, o projeto usa o
-   modulo [dotenv-flow](https://www.npmjs.com/package/dotenv-flow), que possibilida utilizar diversas configurações de ambiente.
+2. Renomeie o arquivo default-sample.json para default.json que está localizado no diretório config/ e altere as variáveis de ambiente do projeto, caso deseja sobrescrever ou adicionar configurações, como por exemplo, com as variáveis de produção você pode criar o production.json.
 3. `$ npm install`, para instalar todas as dependências.
-4. Caso você deseja executar no modo desenvolvimento, recomendamos instalar o nodemon `$ npm install -g nodemon` e executar o
-   `$ npm run start-dev`, para executar o projeto ou se for no modo produção execute `$ npm run start-prod`.
-5. Será exibida a mensagem: **API rodando em http://127.0.0.1:3000** no terminal.
+4. `$ npm start`, para executar o projeto.
+5. Será exibida a mensagem: **API rodando na porta 3000** no terminal.
 
 ### Rotas
 
@@ -56,7 +64,7 @@ OBS: O token expira em 24 horas!
 As dependência utilizadas na API são:
 
 - bcryptjs
-- dotenv-flow
+- config
 - body-parser
 - express
 - jsonwebtoken
