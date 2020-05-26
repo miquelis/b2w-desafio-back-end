@@ -8,7 +8,7 @@ Para possibilitar a equipe de front criar essa aplicação, queremos desenvolver
 
 - Para cada planeta, os seguintes dados devem ser obtidos do banco de dados da aplicação, sendo inserido manualmente: Nome,Clima, Terreno.
 
-- Para cada planeta também devemos ter a quantidade de aparições em filmes, que podem ser obtidas pela API pública do Star Wars: https://swapi.co/
+- Para cada planeta também devemos ter a quantidade de aparições em filmes, que podem ser obtidas pela API pública do Star Wars: https://swapi.dev/
 
 #### Funcionalidades desejadas:
 
